@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>My App</title>
+  </head>
+  <body>
+    <h1>谷戸池書店</h1>
+    <h2>今月の新刊一覧</h2>
+      <a href="{{ url_for('form') }}">編集</a>
+        {% if books == [] %}  <!-- 本がない場合。空のリストが返ってきた場合。 -->
+            <p>新刊はありません。</p>
+        {% else %}
+            <table border="1">
+                <tr>
+                    <th>タイトル</th>
+                    <th>著者</th>
+                    <th>価格</th>
+                    <th>発売日</th>
+                </tr>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.price }} 円</td>
+                    <td>{{ book.arrival }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+  </body>
+</html>
